@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ClothShop Mini — Admin Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <div class="nav">ClothShop Mini — Admin</div>
+  <div class="container">
+    <h2>Admin Sign in</h2>
+    {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+    <form method="post" action="/admin/login" class="card">
+      <label>Username</label>
+      <input name="username" placeholder="admin" required>
+      <label>Password</label>
+      <input name="password" type="password" placeholder="admin123" required>
+      <button type="submit">Login</button>
+    </form>
+    <p class="muted">Use the ADMIN_USER / ADMIN_PASS from your .env</p>
+  </div>
+</body>
+</html>

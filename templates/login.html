@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ClothShop Mini — Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <div class="nav">ClothShop Mini</div>
+  <div class="container">
+    <h2>Sign in (Mock)</h2>
+    {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+    <form method="post" action="/login" class="card">
+      <label>Username</label>
+      <input name="username" placeholder="student or varsh" required>
+      <label>Password</label>
+      <input name="password" type="password" placeholder="password123" required>
+      <button type="submit">Login</button>
+    </form>
+    <p class="muted">Use: <b>student / password123</b></p>
+  </div>
+</body>
+</html>

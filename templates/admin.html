@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ClothShop Mini — Admin</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <div class="nav">
+    <div>ClothShop Mini — Admin</div>
+    <div class="nav-right">
+      <a href="/admin/logout">Logout</a>
+    </div>
+  </div>
+  <div class="container">
+    <h2>All Orders</h2>
+    <div id="orders"></div>
+    <h3>Selected Order</h3>
+    <pre id="order-json" class="card" style="white-space:pre-wrap"></pre>
+  </div>
+  <script>
+    async function loadAll(){
+      const res = await fetch('/api/admin/orders');
+      const rows = await res.json();
+      const box = document.getElementById('orders');
+      if(!Array.isArray(rows) || rows.length===0){
+        box.innerHTML = '<p class="muted">No orders yet.</p>';
+        return;
+      }
+      box.innerHTML = rows.map(r => `
+        <div class="order">
+          <div><b>${r.order_id}</b></div>
+          <div>User: ${r.user}</div>
+          <div>Items: ${r.count}</div>
+          <div>Total: ₹${r.total}</div>
+          <button onclick="openOrder('${r.order_id}')">Open</button>
+        </div>
+      `).join('');
+    }
+    async function openOrder(oid){
+      const res = await fetch('/api/admin/order/'+oid);
+      const data = await res.json();
+      document.getElementById('order-json').textContent = JSON.stringify(data, null, 2);
+    }
+    loadAll();
+  </script>
+</body>
+</html>

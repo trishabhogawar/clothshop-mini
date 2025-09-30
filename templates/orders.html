@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ClothShop Mini — Orders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <div class="nav">
+    <div>ClothShop Mini</div>
+    <div class="nav-right">
+      <a href="/shop">Shop</a>
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+  <div class="container">
+    <h2>My Orders</h2>
+    <div id="orders"></div>
+  </div>
+  <script>
+    async function loadOrders(){
+      const res = await fetch('/api/orders');
+      const rows = await res.json();
+      const box = document.getElementById('orders');
+      if(!Array.isArray(rows) || rows.length===0){
+        box.innerHTML = '<p class="muted">No orders yet.</p>';
+        return;
+      }
+      box.innerHTML = rows.map(r => `
+        <div class="order">
+          <div><b>${r.order_id}</b></div>
+          <div>Items: ${r.count}</div>
+          <div>Total: ₹${r.total}</div>
+        </div>
+      `).join('');
+    }
+    loadOrders();
+  </script>
+</body>
+</html>

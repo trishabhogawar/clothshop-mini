@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ClothShop Mini — Shop</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <div class="nav">
+    <div>ClothShop Mini</div>
+    <div class="nav-right">
+      <span>Hello, {{ username }}</span>
+      <a href="/orders">My Orders</a>
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+
+  <div class="container grid" id="product-grid"></div>
+
+  <div class="cart" id="cart">
+    <h3>Cart</h3>
+    <div id="cart-items"></div>
+    <div class="cart-total">
+      <span>Total:</span>
+      <strong id="total">₹0</strong>
+    </div>
+    <div class="checkout">
+      <input id="address" placeholder="Delivery address">
+      <select id="payment">
+        <option>COD</option>
+        <option>UPI</option>
+        <option>Card</option>
+      </select>
+      <button id="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

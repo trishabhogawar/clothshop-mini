@@ -1,0 +1,6 @@
+[
+  {"id": 101, "name": "Cotton T-Shirt", "brand": "UrbanCo", "price": 499, "size": ["S","M","L"], "img": "https://picsum.photos/id/237/480/640"},
+  {"id": 102, "name": "Slim Fit Jeans", "brand": "DenimX", "price": 1499, "size": ["30","32","34"], "img": "https://picsum.photos/id/1005/480/640"},
+  {"id": 103, "name": "Athleisure Hoodie", "brand": "Move", "price": 1299, "size": ["M","L","XL"], "img": "https://picsum.photos/id/1027/480/640"},
+  {"id": 104, "name": "Summer Dress", "brand": "Flora", "price": 899, "size": ["S","M","L"], "img": "https://picsum.photos/id/1011/480/640"}
+]
