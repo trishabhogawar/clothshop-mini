@@ -1,19 +1,186 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:#0b1220;color:#fff}
+
+/* ===== Navigation ===== */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 20px;background:#0b1220;color:#fff
+}
 .nav a{color:#fff;text-decoration:none;margin-left:14px}
-.container{max-width:1100px;margin:24px auto;padding:0 16px}
+
+/* ===== Containers ===== */
+.container{max-width:1100px;margin:0 auto 24px;padding:0 16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+
+/* ===== Generic Cards ===== */
 .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px}
 .product img{width:100%;border-radius:12px;border:1px solid #eee}
 .product h4{margin:10px 0 6px}
-.muted{color:#6b7280}
+.muted{color:#9aa6bf}
 .alert{background:#fde2e1;color:#7f1d1d;padding:8px 10px;border-radius:8px;margin-bottom:12px}
+
 label{display:block;margin-top:10px}
 input,select,button{width:100%;padding:10px;margin-top:6px;border:1px solid #d1d5db;border-radius:8px}
 button{background:#2563eb;color:#fff;border:none;cursor:pointer}
 button:hover{filter:brightness(1.03)}
-.cart{position:fixed;right:14px;bottom:14px;width:300px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:12px;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+
+/* ===== Cart (floating) ===== */
+.cart{
+  position:fixed;right:30px;bottom:30px;width:300px;margin:0;
+  background:rgba(15,23,42,.85);color:#e6eaf2;
+  border:1px solid rgba(148,163,184,.25);border-radius:12px;padding:12px;
+  box-shadow:0 10px 40px rgba(0,0,0,.5);backdrop-filter:blur(12px)
+}
+.cart h3{margin:0 0 6px}
 .cart-items .row{display:flex;justify-content:space-between;margin:8px 0}
-.cart-total{display:flex;justify-content:space-between;margin-top:6px;padding-top:8px;border-top:1px dashed #ddd}
-.order{border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin:8px 0}
+.cart-total{display:flex;justify-content:space-between;margin-top:6px;padding-top:8px;border-top:1px solid rgba(148,163,184,.25)}
+.cart input,.cart select{background:rgba(15,23,42,.7);border:1px solid rgba(148,163,184,.25);color:#e6eaf2}
+.cart .btn-primary{width:100%;margin-top:10px}
+
+/* ===== Auth Pages ===== */
+.auth-body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.25), transparent 60%),
+    radial-gradient(circle at 85% 80%, rgba(14, 165, 233, 0.25), transparent 60%),
+    linear-gradient(180deg, #0b1220 0%, #0e1528 50%, #0b1220 100%);
+  display:grid;
+  grid-template-rows:auto 1fr;
+  color:#e6eaf2;
+}
+
+.brand-badge{
+  width:28px;height:28px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#3b82f6,#60a5fa);color:#fff;font-weight:800;font-size:13px;
+  box-shadow:0 6px 18px rgba(59,130,246,.35)
+}
+.auth-wrap{display:grid;place-items:center;padding:40px 16px}
+.auth-card{
+  width:100%;max-width:460px;padding:28px;background:linear-gradient(180deg,#0f172a,#0c1426);
+  border:1px solid rgba(148,163,184,.12);border-radius:20px;
+  box-shadow:0 20px 60px rgba(2,8,23,.65), inset 0 1px 0 rgba(255,255,255,.04)
+}
+.auth-header{margin-bottom:18px}
+.auth-header h1{margin:0 0 6px 0;font-size:26px;letter-spacing:.2px}
+.subtitle{margin:0;color:#9aa6bf;font-size:14px}
+.auth-form{display:grid;gap:14px}
+.field{display:grid;gap:8px}
+.field span{font-size:13px;color:#9aa6bf}
+.field input{
+  height:44px;padding:0 14px;border-radius:12px;border:1px solid rgba(148,163,184,.18);
+  background:rgba(15,23,42,.65);color:#e6eaf2;outline:none;transition:border .15s,box-shadow .15s,transform .02s
+}
+.field input:focus{border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,.5)}
+.meta-row{display:flex;align-items:center;justify-content:space-between;margin-top:2px}
+.remember{display:flex;align-items:center;gap:8px;color:#9aa6bf;font-size:13px}
+.btn-primary{
+  margin-top:6px;height:46px;border:0;border-radius:12px;
+  background:linear-gradient(135deg,#3b82f6,#60a5fa);color:#fff;font-weight:700;letter-spacing:.3px;cursor:pointer;
+  box-shadow:0 12px 24px rgba(59,130,246,.35);transition:transform .05s ease,filter .15s ease
+}
+.btn-primary:hover{filter:brightness(1.05)}
+.btn-primary:active{transform:translateY(1px)}
+.auth-footer{margin-top:14px;display:flex;justify-content:center}
+.hint{color:#9aa6bf;font-size:12px}
+
+/* ===== Shop & Product Area ===== */
+:root{
+  --bg:#0b1220;--panel:#0f172a;--panel2:#0c1426;--text:#e6eaf2;--muted:#9aa6bf;
+  --brand:#3b82f6;--brand2:#60a5fa;--ring:rgba(59,130,246,.45)
+}
+.shop-body{
+  background:
+    radial-gradient(circle at 10% 10%, rgba(99,102,241,0.2), transparent 60%),
+    radial-gradient(circle at 80% 90%, rgba(56,189,248,0.2), transparent 60%),
+    linear-gradient(180deg, #0b1220 0%, #0d1426 60%, #0b1220 100%) fixed;
+  color:var(--text);
+  min-height:100vh;
+  display:grid;
+  grid-template-rows:auto 1fr;
+  overflow-x:hidden;
+}
+
+
+/* (Search bar removed earlier) */
+.toolbar,.input.search{display:none!important}
+
+/* === Layout centering + slight downshift === */
+.shop-wrap{
+  display:flex;justify-content:center;align-items:flex-start;gap:40px;
+  padding:70px 40px 40px;   /* top = 20px to move grid slightly down */
+}
+.product-grid{
+  flex:1 1 auto;max-width:1100px;display:flex;justify-content:center;margin:0 auto;padding:0
+}
+#product-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;justify-items:center;justify-content:center;align-items:start;
+  margin:0 auto;width:100%
+}
+
+/* Cards */
+#product-grid > *{
+  background:linear-gradient(180deg,var(--panel),var(--panel2));
+  border:1px solid rgba(148,163,184,.12);border-radius:18px;overflow:hidden;
+  box-shadow:0 10px 30px rgba(59,130,246,.25);
+  transition:transform .2s ease,border-color .15s ease,box-shadow .25s ease
+}
+#product-grid > *:hover{
+  transform:translateY(-4px);
+  border-color:rgba(96,165,250,.45);box-shadow:0 22px 66px rgba(2,8,23,.75)
+}
+#product-grid img{width:100%;height:220px;object-fit:cover;display:block}
+#product-grid .title{font-weight:700;font-size:16px;margin:10px 0 4px}
+#product-grid .brand{color:var(--muted);font-size:13px}
+#product-grid .price{font-weight:800;margin:6px 0 10px}
+#product-grid .row{display:flex;gap:10px}
+#product-grid select{
+  height:38px;border-radius:10px;border:1px solid rgba(148,163,184,.2);
+  background:rgba(15,23,42,.6);color:var(--text);padding:0 10px
+}
+#product-grid select:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--ring)}
+.btn-add{
+  flex:1;height:38px;border:0;border-radius:10px;cursor:pointer;
+  background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:700;
+  box-shadow:0 10px 20px rgba(59,130,246,.35);transition:filter .15s,transform .05s
+}
+.btn-add:hover{filter:brightness(1.05)}
+.btn-add:active{transform:translateY(1px)}
+
+/* Toast */
+.toast{
+  position:fixed;right:20px;bottom:20px;min-width:200px;
+  background:rgba(15,23,42,.8);color:#fff;border:1px solid rgba(148,163,184,.2);
+  padding:12px 14px;border-radius:12px;opacity:0;transform:translateY(8px);
+  transition:opacity .2s ease,transform .2s ease;pointer-events:none;z-index:9999
+}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* ===== Responsive ===== */
+@media (max-width:1000px){
+  .shop-wrap{flex-direction:column;gap:18px;padding:16px}
+  .cart{position:static;width:auto}
+}
+/* ==== Header (nav) separation & polish ==== */
+.nav{
+  position: sticky;          /* stays at top while scrolling */
+  top: 0;
+  z-index: 1000;
+  background: rgba(11,18,32,0.78);               /* glassy dark */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(148,163,184,.16); /* subtle separator line */
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.03) inset,          /* soft inner highlight */
+    0 6px 20px rgba(2,8,23,.25);                  /* faint depth */
+}
+
+/* remove any accidental gap between nav and content */
+.shop-body > .nav,
+.auth-body > .nav{
+  margin: 0 !important;
+}
+
+/* ensure content doesn’t stick to it visually */
+.shop-wrap{ padding-top: 20px }      /* adjust to taste: 12–24px */
+.auth-wrap{ padding-top: 36px }      /* moves login card slightly down */

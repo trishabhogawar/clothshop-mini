@@ -4,20 +4,43 @@
   <meta charset="utf-8">
   <title>ClothShop Mini — Login</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<body>
-  <div class="nav">ClothShop Mini</div>
-  <div class="container">
-    <h2>Sign in (Mock)</h2>
-    {% if error %}<div class="alert">{{ error }}</div>{% endif %}
-    <form method="post" action="/login" class="card">
-      <label>Username</label>
-      <input name="username" placeholder="student or varsh" required>
-      <label>Password</label>
-      <input name="password" type="password" placeholder="password123" required>
-      <button type="submit">Login</button>
-    </form>
-    <p class="muted">Use: <b>student / password123</b></p>
-  </div>
+<body class="auth-body">
+  <nav class="nav">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="brand-badge">CS</div>
+      ClothShop Mini
+    </div>
+  </nav>
+
+  <main class="auth-wrap">
+    <section class="auth-card">
+      <header class="auth-header">
+        <h1>Sign in</h1>
+        <p class="subtitle">Use <strong>student</strong> / <strong>password123</strong> for demo</p>
+      </header>
+
+      {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+
+      <form method="post" action="/login" class="auth-form">
+        <label class="field">
+          <span>Username</span>
+          <input name="username" placeholder="student or varsh" required>
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input name="password" type="password" placeholder="••••••••" required>
+        </label>
+
+        <button type="submit" class="btn-primary">Login</button>
+      </form>
+
+      <footer class="auth-footer">
+        <span class="hint">Mock login for coursework</span>
+      </footer>
+    </section>
+  </main>
 </body>
 </html>

@@ -92,3 +92,68 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const btn = document.getElementById('checkout-btn');
   if(btn) btn.addEventListener('click', checkout);
 });
+// --- Toast ---
+function showToast(msg){
+  const el = document.getElementById('toast');
+  if(!el) return;
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(()=> el.classList.remove('show'), 1200);
+}
+
+// Hook your existing "add to cart" buttons (delegated)
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.btn-add, .btn');
+  if(!btn) return;
+  showToast('Added to cart ✓');
+});
+
+// --- Search + chips filter (works if each product element has data-brand + data-name) ---
+const search = document.getElementById('search');
+const grid = document.getElementById('product-grid');
+function applyFilters(){
+  const q = (search?.value || '').toLowerCase();
+  const activeChip = document.querySelector('.chip.active')?.dataset.chip || 'all';
+  [...(grid?.children || [])].forEach(card=>{
+    const name = (card.dataset.name || '').toLowerCase();
+    const brand = (card.dataset.brand || '').toLowerCase();
+    const chipOK = (activeChip==='all') || (brand === activeChip.toLowerCase());
+    const searchOK = !q || name.includes(q) || brand.includes(q);
+    card.style.display = (chipOK && searchOK) ? '' : 'none';
+  });
+}
+search?.addEventListener('input', applyFilters);
+document.addEventListener('click', (e)=>{
+  const c = e.target.closest('.chip'); if(!c) return;
+  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+  c.classList.add('active'); applyFilters();
+});
+
+// --- Optional: Skeleton while loading (use if you render via fetch/timeout) ---
+function mountSkeletons(n=8){
+  if(!grid) return;
+  grid.innerHTML = '';
+  for(let i=0;i<n;i++){
+    const s = document.createElement('div');
+    s.className = 'skeleton';
+    s.style.height = '340px';
+    s.style.borderRadius = '18px';
+    grid.appendChild(s);
+  }
+}
+// Example usage before your data render:
+// mountSkeletons();  // then replace with real cards once products are ready
+
+// --- Improve checkout enable/disable on cart changes ---
+const itemsEl = document.getElementById('cart-items');
+const emptyEl = document.getElementById('cart-empty');
+const checkoutBtn = document.getElementById('checkout-btn');
+function refreshCheckoutState(){
+  if(!itemsEl || !checkoutBtn || !emptyEl) return;
+  const hasItems = itemsEl.children.length > 0;
+  emptyEl.style.display = hasItems ? 'none' : '';
+  checkoutBtn.disabled = !hasItems;
+}
+const mo = itemsEl ? new MutationObserver(refreshCheckoutState) : null;
+mo?.observe(itemsEl, { childList:true });
+refreshCheckoutState();

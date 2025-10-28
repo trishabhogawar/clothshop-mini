@@ -3,21 +3,44 @@
 <head>
   <meta charset="utf-8">
   <title>ClothShop Mini — Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
 </head>
-<body>
-  <div class="nav">ClothShop Mini — Admin</div>
-  <div class="container">
-    <h2>Admin Sign in</h2>
-    {% if error %}<div class="alert">{{ error }}</div>{% endif %}
-    <form method="post" action="/admin/login" class="card">
-      <label>Username</label>
-      <input name="username" placeholder="admin" required>
-      <label>Password</label>
-      <input name="password" type="password" placeholder="admin123" required>
-      <button type="submit">Login</button>
-    </form>
-    <p class="muted">Use the ADMIN_USER / ADMIN_PASS from your .env</p>
-  </div>
+<body class="auth-body">
+  <nav class="nav">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="brand-badge">CS</div>
+      ClothShop Mini — Admin
+    </div>
+  </nav>
+
+  <main class="auth-wrap">
+    <section class="auth-card">
+      <header class="auth-header">
+        <h1>Admin sign in</h1>
+        <p class="subtitle">Use credentials from <strong>.env</strong> (<strong>ADMIN_USER</strong> / <strong>ADMIN_PASS</strong>)</p>
+      </header>
+
+      {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+
+      <form method="post" action="/admin/login" class="auth-form">
+        <label class="field">
+          <span>Username</span>
+          <input name="username" placeholder="admin" required>
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input name="password" type="password" placeholder="••••••••" required>
+        </label>
+
+        <button type="submit" class="btn-primary">Login</button>
+      </form>
+
+      <footer class="auth-footer">
+        <span class="hint">Authorized access only</span>
+      </footer>
+    </section>
+  </main>
 </body>
 </html>
